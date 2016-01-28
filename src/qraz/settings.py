@@ -219,7 +219,7 @@ COMPRESS_CSS_FILTERS = (
     'compressor.filters.cssmin.CSSMinFilter',
 )
 COMPRESS_JS_FILTERS = (
-    'compressor.filters.jsmin.JSMinFilter'
+    'compressor.filters.jsmin.JSMinFilter',
 )
 COMPRESS_STORAGE = 'compressor.storage.GzipCompressorFileStorage'
 COMPRESS_CSS_COMPRESSOR = 'compressor.css.CssCompressor'
