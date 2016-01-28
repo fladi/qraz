@@ -62,7 +62,7 @@ TEMPLATES = [
     },
 ]
 
-ALLOWED_HOSTS = ['qraz.at']
+ALLOWED_HOSTS = ['qraz.at', 'www.qraz.at']
 
 INSTALLED_APPS = (
     'qraz.frontend',
