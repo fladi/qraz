@@ -1,0 +1,74 @@
+{% extends "qraz/base.html" %}
+
+{% block content %}
+<h1>What is QRAZ?</h1>
+<p>
+QRAZ provides a simple integration of <a href="https://pypi.python.org/pypi/hovercraft/">Hovercraft</a> with <a href="https://github.com/">GitHub</a>.
+</p>
+
+<h1>How does it work?</h1>
+<p>
+You can login to QRAZ with your GitHub account and activate one or more of your repositories that contain hovercraft presentations.
+</p>
+
+<h1>How does QRAZ know what files to convert?</h1>
+<p>
+Once you have enabled a repository QRAZ will start monitoring it for pushes, using GitHub webhooks. To tell QRAz which file to convert with hovercraft, you need
+to create a file called <code>.hovercraft.yml</code> inside your repository. This works similar to services like <a href="https://travis-ci.org/">Travis-CI</a>
+and their <code>.travis.yml</code>. The content of the file needs to be valid <a href="http://yaml.org/">YAML</a>.
+</p>
+
+<p>
+Here is an example for <code>.hovercraft.yml</code>:
+<pre>
+04-html:
+  source: 04-html.rst
+  css:
+    - css/campus02.css
+  template: default
+  auto-console: false
+  skip-help: true
+  skip-notes: true
+  assets:
+    - figures
+    - videos
+    - images
+    - examples
+04-html-simple:
+  source: 04-html.rst
+  template: simple
+</pre>
+This would build two presentations named <code>04-html</code> and <code>04-html-simple</code> using the file <code>04-html.rst</code> at the root of the repository as input for hovercraft.
+Each presentation in the YAML file can have several attributes, all of which are optional:
+<dl>
+  <dt><code>source</code></dt>
+  <dd>
+  The name of the input file for hovercraft relative to the repository root. If this is not specified, QRAZ will try to use a file named <code>&lt;presentation-name&gt;.rst</code>.
+  </dd>
+  <dt><code>css</code></dt>
+  <dd>
+  A list of CSS filenames that should be included in the presentation, relative to the repository root.
+  </dd>
+  <dt><code>template</code></dt>
+  <dd>
+  The hovercraft template to use. If not specified, a value of <code>default</code> is used.
+  </dd>
+  <dt><code>auto-console</code></dt>
+  <dd>
+  </dd>
+  <dt><code>auto-console</code></dt>
+  <dd>
+  </dd>
+  <dt><code>auto-console</code></dt>
+  <dd>
+  </dd>
+  <dt><code>auto-console</code></dt>
+  <dd>
+  </dd>
+</dl>
+</dl>
+</dl>
+</dl>
+
+</p>
+{% endblock %}

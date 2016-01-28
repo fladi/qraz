@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>QRAZ</title>
+    {% load staticfiles %}
+    {% load compress %}
+    {% compress css %}
+    <link rel="stylesheet" href="{% static "bootstrap/css/bootstrap.css" %}" type="text/css" charset="utf-8">
+    <link rel="stylesheet" href="{% static "bootswatch/sandstone/bootstrap.css" %}" type="text/css" charset="utf-8">
+    <link rel="stylesheet" href="{% static "font-awesome/css/font-awesome.css" %}" type="text/css" charset="utf-8">
+    <link rel="stylesheet" href="{% static "qraz/frontend.css" %}" type="text/css" charset="utf-8">
+    {% endcompress %}
+    {% compress js %}
+    <script src="{% static "jquery/jquery.js" %}" type="text/javascript" charset="utf-8"></script>
+    <script src="{% static "bootstrap/js/bootstrap.js" %}" type="text/javascript" charset="utf-8"></script>
+    <script src="{% static "angular.js/angular.js" %}" type="text/javascript" charset="utf-8"></script>
+    <script src="{% static "angular.js/angular-resource.js" %}" type="text/javascript" charset="utf-8"></script>
+    <script src="{% static "angular.js/angular-animate.js" %}" type="text/javascript" charset="utf-8"></script>
+    <script src="{% static "qraz/frontend.js" %}" type="text/javascript" charset="utf-8"></script>
+    {% endcompress %}
+  </head>
+  <body ng-app="FrontendApp" ng-strict-di>
+    {% block body %}
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="{% url 'qraz:index' %}">
+            <i class="fa fa-picture-o"></i>
+            QRAZ
+          </a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            {% if user.is_authenticated %}
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                {{ user }}
+                <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="{% url 'qraz:presentations' %}">Presentations</a></li>
+                <li><a href="{% url 'qraz:repositories' %}">Repositories</a></li>
+                <li><a href="{% url 'qraz:logout' %}">Logout</a></li>
+              </ul>
+            </li>
+            {% else %}
+            <li>
+              <a href="{% url 'social:begin' 'github' %}">
+                <i class="fa fa-github"></i>
+                Sign in with Github
+              </a>
+            </li>
+            {% endif %}
+            <li><a href="{% url 'qraz:help' %}">Help</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      {% block content %}{% endblock %}
+    </div>
+    {% endblock %}
+  </body>
+</html>

@@ -1,0 +1,60 @@
+{% extends "qraz/base.html" %}
+
+{% block content %}
+<div ng-controller="RepositoriesController" ng-cloak>
+  <div class="page-header">
+    <div class='btn-toolbar pull-right'>
+      <div class='btn-group'>
+        <button type='button' class='btn btn-primary' ng-click="syncGithub()" ng-hide="syncActive">Sync with Github</button>
+      </div>
+    </div>
+      <h1>Repositories</h1>
+  </div>
+  <div class="row" ng-show="syncActive">
+    <div class="col-sm-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">GitHub synchronization</h3>
+        </div>
+        <div class="panel-body">
+          We are now syncing all your public Github repositories, this may take a while. Please be patient!
+          <div class="progress" ng-show="sync.state == 'PROGRESS'">
+            <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="{$ syncProgress $}" aria-valuemin="0" aria-valuemax="100" ng-style="{width: syncProgress + '%'}">
+              {$ sync.result.current $}/{$ sync.result.total $}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row" ng-hide="syncActive">
+    <div class="col-sm-12">
+      <form>
+        <div class="form-group">
+          <div class="input-group">
+            <div class="input-group-addon"><i class="fa fa-search"></i></div>
+            <input type="text" class="form-control" placeholder="Filter by repository name" ng-model="searchName">
+            <span class="input-group-btn">
+              <button class="btn btn-default" type="button" ng-click="sortType = 'name'; sortReverse = !sortReverse">
+                <span ng-show="!sortReverse" class="fa fa-caret-down"></span>
+                <span ng-show="sortReverse" class="fa fa-caret-up"></span>
+              </button>
+            </span>
+          </div>
+        </div>
+      </form>
+      <div class="list-group">
+        <a
+           href="#"
+           class="list-group-item"
+           ng-repeat="repo in repositories | orderBy:'name':sortReverse | filter:{name:searchName}"
+           ng-class="{'list-group-item-success': repo.state == 'active', 'disabled': repo._working}"
+           ng-click="toggleRepository(repo)">
+          <span class="fa" ng-class="{'fa-folder-open': repo.state == 'active', 'fa-folder': repo.state != 'active', 'fa-spin': repo._working}"></span>
+          {$ repo.name $}
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

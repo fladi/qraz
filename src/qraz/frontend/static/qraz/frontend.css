@@ -1,0 +1,77 @@
+/*
+ * Base structure
+ */
+
+/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+  padding-top: 74px;
+}
+
+.portfolio_contain_box {
+  position: relative;
+}
+
+.portfolio_contain_box:hover img {
+  filter: brightness(50%);
+  transition: all ease 0.3s;
+}
+
+.portfolio_contain_box:hover .overlay {
+  animation-name: portfolio_hover;
+  animation-duration: 1s;
+  opacity: 0.9;
+}
+
+.overlay {
+  transition: all ease 0.3s;
+  position: relative;
+  font-weight: bold;
+  opacity: 0;
+  border: 1px solid #fff;
+  background: rgba(0, 0, 0, 0.7);
+  transform: translateY(-51px);
+}
+
+.overlay span {
+  font-size: 35px;
+  color: #fff;
+}
+hr.common {
+  margin: 25px auto 30px;
+  padding: 0;
+  max-width: 250px;
+  border: 0;
+  border-top: dashed 3px;
+  text-align: center;
+  border-color: #8d8d8d  ;
+}
+hr.tie::after{
+  content: "\f02d";
+}
+@-moz-keyframes portfolio_hover {
+  0% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(-51px);
+
+  }
+}
+@-webkit-keyframes portfolio_hover {
+  0% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(-51px);
+
+  }
+}
+@-o-keyframes portfolio_hover {
+  0% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(-51px);
+
+  }
+}

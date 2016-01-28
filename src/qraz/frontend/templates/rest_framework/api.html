@@ -1,0 +1,11 @@
+{% extends "rest_framework/base.html" %}
+{% load staticfiles %}
+{% load compress %}
+
+{% block bootstrap_theme %}
+{% compress css %}
+<link rel="stylesheet" href="{% static "bootswatch/superhero/bootstrap.css" %}" type="text/css" charset="utf-8">
+{% endcompress %}
+{% endblock %}
+
+{% block bootstrap_navbar_variant %}navbar-default{% endblock %}
