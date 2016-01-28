@@ -36,6 +36,11 @@ SITE_ID = os.environ.get('DJANGO_SITE_ID')
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 
 DEBUG = 'DJANGO_DEBUG' in os.environ
+ADMINS = (
+    ('Michael Fladischer', 'michael@openservices.at'),
+)
+EMAIL_HOST = 'localhost'
+SERVER_EMAIL = 'django@qraz.at'
 
 if 'DJANGO_INTERNAL_IPS' in os.environ:
     INTERNAL_IPS = IPList(os.environ.get('DJANGO_INTERNAL_IPS').split(','))
