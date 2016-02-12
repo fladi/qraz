@@ -41,26 +41,48 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
             {% if user.is_authenticated %}
+            <li>
+              <a href="{% url 'qraz:presentations' %}">
+                <i class="fa fa-files-o"></i>
+                Presentations
+              </a>
+            </li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-user"></i>
                 {{ user }}
                 <span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
-                <li><a href="{% url 'qraz:presentations' %}">Presentations</a></li>
-                <li><a href="{% url 'qraz:repositories' %}">Repositories</a></li>
-                <li><a href="{% url 'qraz:logout' %}">Logout</a></li>
+                <li>
+                  <a href="{% url 'qraz:repositories' %}">
+                    <i class="fa fa-github"></i>
+                    Repositories
+                  </a>
+                </li>
+                <li role="separator" class="divider"></li>
+                <li>
+                  <a href="{% url 'qraz:logout' %}">
+                    <i class="fa fa-sign-out"></i>
+                    Logout
+                  </a>
+                </li>
               </ul>
             </li>
             {% else %}
             <li>
               <a href="{% url 'social:begin' 'github' %}">
-                <i class="fa fa-github"></i>
+                <i class="fa fa-sign-in"></i>
                 Sign in with Github
               </a>
             </li>
             {% endif %}
-            <li><a href="{% url 'qraz:help' %}">Help</a></li>
+            <li>
+              <a href="{% url 'qraz:help' %}">
+                <i class="fa fa-info-circle"></i>
+                Help
+              </a>
+            </li>
           </ul>
         </div>
       </div>
