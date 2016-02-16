@@ -52,6 +52,10 @@ class LogoutView(RedirectView):
         return response
 
 
+class NotFoundView(RedirectView):
+    url = reverse('qraz:index')
+
+
 class IndexView(TemplateView):
     template_name = 'qraz/index.html'
 
@@ -183,3 +187,6 @@ class SynchronizationViewSet(NeverCacheMixin, ViewSet):
             'state': task.state,
             'result': task.result,
         })
+
+
+handle404 = NotFoundView.as_view()

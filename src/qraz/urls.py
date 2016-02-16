@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+from django.conf import settings
 from django.conf.urls import include, url
 from django.contrib import admin
 
@@ -33,3 +34,10 @@ urlpatterns = [
         include('qraz.frontend.urls', namespace='qraz')
     ),
 ]
+
+if settings.DEBUG:
+    urlpatterns += [
+        url(r'^404$', 'qraz.frontend.views.handle404'),
+    ]
+
+handler404 = 'qraz.frontend.views.handle404'
