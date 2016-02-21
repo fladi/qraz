@@ -8,6 +8,7 @@ import shutil
 import subprocess
 import tempfile
 
+import pygit2
 import yaml
 
 from django.conf import settings
@@ -15,7 +16,6 @@ from django.utils import timezone
 
 from celery import Task
 from celery.utils.log import get_task_logger
-from git import Repo
 from github import (
     Github,
     GithubException,
@@ -140,7 +140,7 @@ class BuildTask(Task):
             return False
         prior = timezone.now()
         with tempfile.TemporaryDirectory() as copy:
-            Repo.clone_from(repo.git_url, copy)
+            pygit2.clone_repository(repo.git_url, copy)
             config_file = os.path.join(copy, '.hovercraft.yml')
             if os.access(config_file, os.R_OK):
                 with io.open(config_file, 'r', encoding='utf-8') as stream:
