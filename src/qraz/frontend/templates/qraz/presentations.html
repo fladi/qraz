@@ -22,7 +22,7 @@
         </div>
       </form>
       <div class="list-group">
-        <a href="{$ pres.url $}" class="list-group-item" ng-repeat="pres in presentations | orderBy:'name':sortReverse | filter:{name:searchName}">
+        <a href="{$ pres.url $}" class="list-group-item" ng-repeat="pres in presentations | orderBy:'fullname':sortReverse | filter:{name:searchName}">
           <span class="fa fa-play-circle"></span>
           {$ pres.fullname $}
         </a>
