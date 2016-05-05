@@ -116,7 +116,7 @@ class Repository(models.Model):
             return
         self.hook = hook.id
 
-    @transition(field=state, source='active', target='inactive')
+    @transition(field=state, source='*', target='inactive')
     def deactivate(self, *args, **kwargs):
         """
         This function may contain side-effects,
