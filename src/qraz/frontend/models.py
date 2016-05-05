@@ -96,7 +96,7 @@ class Repository(models.Model):
             logger.error('Could not find repository')
             return
         url = URL(
-            scheme='http',
+            scheme='https',
             host=self.site.domain,
             path=reverse('qraz:webhook', kwargs={'username': self.user.username, 'repository': self.name})
         )
