@@ -5,6 +5,8 @@ from django.conf import settings
 from django.conf.urls import include, url
 from django.contrib import admin
 
+from qraz.frontend.views import handle404
+
 
 urlpatterns = [
     url(
@@ -37,7 +39,7 @@ urlpatterns = [
 
 if settings.DEBUG:
     urlpatterns += [
-        url(r'^404$', 'qraz.frontend.views.handle404'),
+        url(r'^404$', handle404),
     ]
 
-handler404 = 'qraz.frontend.views.handle404'
+handler404 = handle404
