@@ -90,8 +90,6 @@ INSTALLED_APPS = (
     'rest_framework',
     'reversion',
     'compressor',
-    'djcelery',
-    'ws4redis',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -262,7 +260,7 @@ BROKER_URL = 'amqp://{username}:{password}@{hostname}/{vhost}'.format(
     password=os.environ.get('CELERY_BROKER_PASSWORD'),
     vhost=os.environ.get('CELERY_BROKER_VHOST')
 )
-CELERY_RESULT_BACKEND = 'djcelery.backends.database:DatabaseBackend'
+CELERY_RESULT_BACKEND = os.environ.get('DJANGO_CELERY_RESULT_BACKEND', 'rpc://')
 CELERY_TASK_SERIALIZER = 'pickle'
 CELERY_ACCEPT_CONTENT = ['pickle']
 
